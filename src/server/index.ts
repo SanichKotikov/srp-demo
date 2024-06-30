@@ -1,7 +1,7 @@
 import type {
-  TKeyParams,
-  TKeyResponse,
-  TSessionParams,
+  TAuthParams,
+  THelloParams,
+  THelloResponse,
   TPingParams,
   TPingResponse,
   TSignupParams,
@@ -9,9 +9,9 @@ import type {
 import { on } from '../_shared/fetch';
 import { importK } from '../_shared/crypto';
 import { computeSignature } from '../_shared/signature';
-import { ab2hex, bn2ab, hex2bn, bn2hex } from '../_shared/utils';
-import { createKeyPair, computeK, computeM, computeP } from './srp';
-import { initDB, getUser, setUser } from './db';
+import { ab2hex, bn2ab, bn2hex, hex2bn } from '../_shared/utils';
+import { computeK, computeM, computeP, createKeyPair } from './srp';
+import { getUser, initDB, setUser } from './db';
 
 export async function start() {
   let A: bigint;
@@ -21,24 +21,23 @@ export async function start() {
 
   initDB();
 
-  on<void, TSignupParams>('/signup', async (args) => {
+  on<boolean, TSignupParams>('/signup', async (args) => {
     setUser(args.body);
 
-    return undefined;
+    return true;
   });
 
-  on<TKeyResponse, TKeyParams>('/key', async (args) => {
-    A = hex2bn(args.body.A);
-
+  on<THelloResponse, THelloParams>('/hello', async (args) => {
     const { verifier, salt } = getUser(args.body.username);
     keys = await createKeyPair(hex2bn(verifier));
 
     return { salt, B: bn2hex(keys.B) };
   });
 
-  on<string, TSessionParams>('/start', async (args) => {
+  on<string, TAuthParams>('/auth', async (args) => {
     const { verifier, salt } = getUser(args.body.username);
 
+    A = hex2bn(args.body.A);
     const K = await computeK(hex2bn(verifier), A, keys.b, keys.B);
     const M = await computeM(args.body.username, hex2bn(salt), A, keys.B, K);
 
