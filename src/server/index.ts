@@ -5,21 +5,19 @@ import type {
   TPingParams,
   TPingResponse,
   TSignupParams,
-} from '../_shared/api';
-import { on } from '../_shared/fetch';
-import { importK } from '../_shared/crypto';
-import { computeSignature } from '../_shared/signature';
-import { ab2hex, bn2ab, bn2hex, hex2bn } from '../_shared/utils';
+} from '@/_shared/api';
+import { on } from '@/_shared/fetch';
+import { importK } from '@/_shared/crypto';
+import { computeSignature } from '@/_shared/signature';
+import { ab2hex, bn2ab, bn2hex, hex2bn } from '@/_shared/utils';
+import { getUser, setUser } from '@/_shared/db';
 import { computeK, computeM, computeP, createKeyPair } from './srp';
-import { getUser, initDB, setUser } from './db';
 
 export async function start() {
   let A: bigint;
 
   let keys: { b: bigint; B: bigint };
   let secret: CryptoKey | undefined;
-
-  initDB();
 
   on<boolean, TSignupParams>('/signup', async (args) => {
     setUser(args.body);

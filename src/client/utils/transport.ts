@@ -1,10 +1,10 @@
-import { fetch, IFetchHeader } from '../_shared/fetch';
-import { computeSignature } from '../_shared/signature';
-import { ab2hex } from '../_shared/utils';
+import { fetch, type IFetchHeader } from '@/_shared/fetch';
+import { computeSignature } from '@/_shared/signature';
+import { ab2hex } from '@/_shared/utils';
 
 let secret: CryptoKey | undefined;
 
-export function config(secretKey: CryptoKey): void {
+export function config(secretKey: CryptoKey | undefined): void {
   secret = secretKey;
 }
 

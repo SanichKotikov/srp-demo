@@ -1,9 +1,9 @@
 {
   "name": "srp-demo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Secure Remote Password DEMO",
   "sideEffects": false,
-  "main": "./src/index.ts",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SanichKotikov/srp-demo.git"
@@ -11,17 +11,20 @@
   "author": "Sanich Kotikov <sancho@cdrpro.ru> (https://sanichkotikov.github.io)",
   "license": "ISC",
   "scripts": {
-    "start": "webpack serve --mode=development --open"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "bigint-mod-arith": "3.3.1"
+    "@solidjs/router": "0.13.6",
+    "bigint-mod-arith": "3.3.1",
+    "solid-js": "1.8.18"
   },
   "devDependencies": {
-    "html-webpack-plugin": "5.6.0",
-    "ts-loader": "9.5.1",
+    "@types/node": "20.14.9",
     "typescript": "5.4.5",
-    "webpack": "5.91.0",
-    "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.0.4"
+    "vite": "5.3.2",
+    "vite-plugin-checker": "0.7.0",
+    "vite-plugin-solid": "2.10.2"
   }
 }

@@ -1,9 +1,9 @@
 import { modPow } from 'bigint-mod-arith';
-import { g, getRandomBuffer, H, N } from '../_shared/srp';
-import { ab2bn } from '../_shared/utils';
+import { g, getRandomBuffer, H, N } from '@/_shared/srp';
+import { ab2bn } from '@/_shared/utils';
 import { deriveKey } from './crypto';
 
-export { computeM, computeP } from '../_shared/srp';
+export { computeM, computeP } from '@/_shared/srp';
 
 async function computePassKey(salt: bigint, password: string): Promise<bigint> {
   const passKey = (new TextEncoder()).encode(password).buffer;

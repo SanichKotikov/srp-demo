@@ -1,0 +1,30 @@
+.root {
+  display: inline-flex;
+  margin: 0;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: middle;
+  text-decoration: none;
+  background: #363636;
+  border: 0;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: default;
+
+  &:hover {
+    text-decoration: none;
+    background: #2b2b2b;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: #555;
+    background: #404040;
+    cursor: not-allowed;
+  }
+}

@@ -5,7 +5,7 @@ import type {
   TPingParams,
   TPingResponse,
   TSignupParams,
-} from '../_shared/api';
+} from '@/_shared/api';
 import { post } from './transport';
 
 export async function signup(params: TSignupParams) {

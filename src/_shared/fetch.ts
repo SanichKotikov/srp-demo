@@ -1,3 +1,5 @@
+import { log } from './logger';
+
 export interface IFetchHeader {
   signature?: string;
 }
@@ -16,17 +18,20 @@ export function on<T, P extends object>(url: string, callback: TCallback<T, P>):
 }
 
 export function fetch<T, P extends object>(url: string, options: IFetchOptions<P>): Promise<T> {
-  console.log('=>', url, options);
+  log({ type: "request", url, options });
 
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       const callback: TCallback<T, P> | undefined = subs.get(url);
 
       if (!callback) return reject();
-      const resp = await callback(options);
-      console.log('<=', url, resp);
 
-      resolve(resp);
+      callback(options)
+        .then((resp) => {
+          log({ type: "response", url, resp });
+          resolve(resp);
+        })
+        .catch(reject);
     }, 1000);
   });
 }

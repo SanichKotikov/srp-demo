@@ -1,0 +1,6 @@
+.root {
+  padding: 10px 20px 20px;
+  background: #2b2b2b;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

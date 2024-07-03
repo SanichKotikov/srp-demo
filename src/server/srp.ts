@@ -1,7 +1,7 @@
 import { modPow } from 'bigint-mod-arith';
-import { g, getRandomBuffer, H, N } from '../_shared/srp';
+import { g, getRandomBuffer, H, N } from '@/_shared/srp';
 
-export { computeM, computeP } from '../_shared/srp';
+export { computeM, computeP } from '@/_shared/srp';
 
 export async function createKeyPair(v: bigint) {
   const b = getRandomBuffer();

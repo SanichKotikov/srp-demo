@@ -1,4 +1,4 @@
-import { hex2ab } from '../_shared/utils';
+import { hex2ab } from '@/_shared/utils';
 
 const PASS_SALT = hex2ab(
   // hex result of random buffer (64)
