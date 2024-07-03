@@ -9,13 +9,13 @@ The Secure Remote Password protocol (SRP) is an augmented password-authenticated
 `k` — Multiplier parameter;  
 `s` — The user salt;  
 `v` — Password Verifier;  
-`x` — The hash of salt + password;  
+`x` — Private key (The hash of salt + password);  
 `a` — Client secret key;  
 `b` — Server secret key;  
 `A` — Client public key;  
 `B` — Server public key;  
 `u` — The value of preventing attacker who learns a user's verifier;  
-`S` — Pre-master secret (The secure common session key);
+`S` — Pre-master secret (The secure common session key);  
 `K` — The session key hash for used to generate M;  
 `M` — Evidence message, To verify both sides generated the same session key;
 
