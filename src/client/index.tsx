@@ -10,7 +10,7 @@ export async function start() {
   const root = document.getElementById('root');
 
   render(() => (
-    <Router root={App}>
+    <Router base="/srp-demo" root={App}>
       <Route path="/" component={Main} />
       <Route path="/signup" component={Signup} />
       <Route path="/signin" component={SignIn} />

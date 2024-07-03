@@ -23,7 +23,7 @@ function prepare(value: any): unknown {
 export const Logger: Component = () => {
   return (
     <div class={css.root}>
-      <For each={logger()}>
+      <For each={logger()} fallback={<p>Logs not found</p>}>
         {(item: unknown) => (
           <p>{JSON.stringify(prepare(item))}</p>
         )}

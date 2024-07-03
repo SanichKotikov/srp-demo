@@ -4,6 +4,7 @@ import solidPlugin from 'vite-plugin-solid';
 import checker from 'vite-plugin-checker';
 
 export default defineConfig({
+  base: '/srp-demo',
   plugins: [
     solidPlugin(),
     checker({ typescript: true }),

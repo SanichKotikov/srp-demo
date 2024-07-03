@@ -15,7 +15,7 @@ export const DB: Component = () => {
 
   return (
     <div class={css.root}>
-      <For each={users()}>
+      <For each={users()} fallback={<p>Users not found</p>}>
         {(item) => (
           <div>
             <h4>{item.user}</h4>
