@@ -44,11 +44,14 @@ export async function start() {
     }
 
     secret = await importK(bn2ab(K));
+    // NOTE: Set session secure cookie
 
     return bn2hex(await computeP(A, M, K));
   });
 
   on<TPingResponse, TPingParams>('/ping', async (args) => {
+    // NOTE: Check session cookie
+
     if (!secret) throw new Error('Unauthorized');
 
     const signature = await computeSignature(secret, '/ping', args.body);
